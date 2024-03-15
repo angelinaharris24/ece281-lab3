@@ -11,8 +11,8 @@
 --| ---------------------------------------------------------------------------
 --|
 --| FILENAME      : top_basys3.vhd
---| AUTHOR(S)     : Capt Phillip Warner
---| CREATED       : 02/22/2018
+--| AUTHOR(S)     : Capt Phillip Warner, C3C Harris
+--| CREATED       : 03/14/2024
 --| DESCRIPTION   : This file implements the top level module for a BASYS 3 to 
 --|					drive a Thunderbird taillight controller FSM.
 --|

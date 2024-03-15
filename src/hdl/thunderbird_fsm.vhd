@@ -11,8 +11,8 @@
 --| ---------------------------------------------------------------------------
 --|
 --| FILENAME      : thunderbird_fsm.vhd
---| AUTHOR(S)     : Capt Phillip Warner, Capt Dan Johnson
---| CREATED       : 03/2017 Last modified 06/25/2020
+--| AUTHOR(S)     : Capt Phillip Warner, Capt Dan Johnson, C3C Harris
+--| CREATED       : 03/2017 Last modified 03/14/2024
 --| DESCRIPTION   : This file implements the ECE 281 Lab 2 Thunderbird tail lights
 --|					FSM using enumerated types.  This was used to create the
 --|					erroneous sim for GR1
