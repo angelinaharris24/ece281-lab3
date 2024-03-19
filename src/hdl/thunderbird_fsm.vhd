@@ -36,18 +36,18 @@
 --|					can be changed by the inputs
 --|					
 --|
---|                 xxx State Encoding key
+--|                 Binary State Encoding key
 --|                 --------------------
 --|                  State | Encoding
 --|                 --------------------
---|                  OFF   | 
---|                  ON    | 
---|                  R1    | 
---|                  R2    | 
---|                  R3    | 
---|                  L1    | 
---|                  L2    | 
---|                  L3    | 
+--|                  OFF   | 000
+--|                  ON    | 111
+--|                  R1    | 001
+--|                  R2    | 010
+--|                  R3    | 011
+--|                  L1    | 100
+--|                  L2    | 101
+--|                  L3    | 110
 --|                 --------------------
 --|
 --|
@@ -85,23 +85,49 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
  
-entity thunderbird_fsm is 
-  port(
-	
-  );
-end thunderbird_fsm;
+entity thunderbird_fsm is
+      port (
+          i_clk, i_reset  : in    std_logic;
+          i_left, i_right : in    std_logic;
+          o_lights_L      : out   std_logic_vector(2 downto 0);
+          o_lights_R      : out   std_logic_vector(2 downto 0)
+      );
+  end thunderbird_fsm;
 
 architecture thunderbird_fsm_arch of thunderbird_fsm is 
+-- creating register signals with default OFF
+    signal current_state : std_logic_vector (2 downto 0) := "000";
+    signal next_state : std_logic_vector (2 downto 0) := "000";
 
 -- CONSTANTS ------------------------------------------------------------------
-  
 begin
-
-	-- CONCURRENT STATEMENTS --------------------------------------------------------	
-	
+	-- CONCURRENT STATEMENTS --------------------------------------------------------
+	-- next state logic 
+	next_state(2) <= (not current_state(2) and not current_state(1) and not current_state(0) and i_left) or (current_state(2) and not current_state(1));
+	next_state(1) <= (not current_state(2) and not current_state(1) and not current_state(0) and i_left and i_right) or (not current_state(1) and current_state(0)) or (not current_state(2) and current_state(1) and not current_state(0));
+	next_state(0) <= (not current_state(2) and not current_state(1) and not current_state(0) and i_right) or (not current_state(2) and current_state(1) and not current_state(0)) or (current_state(2) and not current_state(1) and not current_state(0));
     ---------------------------------------------------------------------------------
+	-- output logic
+	o_lights_L(2) <= current_state(2) and current_state(1);
+	o_lights_L(1) <= (current_state(2) and current_state(1)) or (current_state(2) and not current_state(1)and current_state(0));
+	o_lights_L(0) <= current_state(2);
+	
+	o_lights_R(2) <= current_state(1) and current_state(0);
+	o_lights_R(1) <= (current_state(2) and current_state(1) and current_state(0)) or (not current_state(2) and current_state(1));
+	o_lights_R(0) <= (not current_state(2) and current_state(0)) or (current_state(2) and current_state(1) and current_state(0)) or (not current_state(2) and current_state(1) and not current_state(0));
 	
 	-- PROCESSES --------------------------------------------------------------------
+		-- state memory w/ asynchronous reset ---------------
+    register_proc : process (i_clk, i_reset)
+    begin
+
+        if i_reset = '1' then
+            current_state <= "000";        -- reset state is OFF
+        elsif (rising_edge(i_clk)) then
+            current_state <= next_state;    -- next state becomes current state
+        end if;
+        
+    end process register_proc;
     
 	-----------------------------------------------------					   
 				  
