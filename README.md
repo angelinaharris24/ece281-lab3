@@ -28,9 +28,12 @@ If successful then GHDL will quietly exit with a `0` code.
 If any of the `assert` statements fail **with** `severity error` then GHDL will cease the simulation and exit with non-zero code; this will also cause the workflow to fail.
 
 
-Waveform screenshot, top level diagram, and RTL schematic located in hdl folder
-Hardware demo sent via video to Captain Yarbrough on Teams
-Documentation: No outside help received on code. Worked with C3C Zoe Bresnahan (my partner) on the Lab Report
+Waveform screenshot, top level diagram, and RTL schematic located in hdl folder.
+
+Hardware demo sent via video to Captain Yarbrough on Teams.
+
+Documentation: No outside help received on code. Worked with C3C Zoe Bresnahan (my partner) on the Lab Report.
+
 ![Waveform from thunderbird_fsm_tb](Waveform.png)
 
 
