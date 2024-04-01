@@ -141,7 +141,6 @@ begin
     
       -- hit reset while left signal in process (should immediately turn off)
       
-    
      w_reset <= '1'; wait for k_clk_period;
      assert w_lights_L = "000" report "bad reset during left turn" severity failure;
      assert w_lights_R = "000" report "bad reset during left turn" severity failure;
@@ -168,14 +167,11 @@ begin
     
     -- turn right signal off while right signal in process (should continue through process)
         
-        
         w_right <= '0'; wait for k_clk_period;
         assert w_lights_R = "011" report "incorrect when turning right switch off during process" severity failure;
        
-        
      -- hit reset while right signal in process (should immediately turn off)
           
-        
          w_reset <= '1'; wait for k_clk_period;
          assert w_lights_L = "000" report "bad reset during right turn" severity failure;
          assert w_lights_R = "000" report "bad reset during right turn" severity failure;
