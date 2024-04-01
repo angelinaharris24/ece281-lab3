@@ -31,3 +31,5 @@ If any of the `assert` statements fail **with** `severity error` then GHDL will 
 Waveform screenshot, top level diagram, and RTL schematic located in hdl folder
 Hardware demo sent via video to Captain Yarbrough on Teams
 Documentation: No outside help received on code. Worked with C3C Zoe Bresnahan (my partner) on the Lab Report
+![Waveform from thunderbird_fsm_tb](Waveform.png)
+
