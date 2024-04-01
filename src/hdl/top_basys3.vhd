@@ -75,11 +75,8 @@ entity top_basys3 is
                                                         -- led(2:0)   --> R
 		
 		-- Buttons (5 total)
-		--btnC	:	in	std_logic
-		--btnU	:	in	std_logic;
 		btnL	:	in	std_logic;                    -- clk_reset
 		btnR	:	in	std_logic	                  -- fsm_reset
-		--btnD	:	in	std_logic;	
 	);
 end top_basys3;
 
@@ -130,16 +127,9 @@ begin
                 i_reset => btnL,
                 o_clk   => w_clk
             );   
-  
-	-- CONCURRENT STATEMENTS (not necessary) ----------------------------
-	
+  	
 	-- ground unused LEDs
 	-- leave unused switches UNCONNECTED
 	led(12 downto 3) <= (others => '0');
-	
-	
-	-- Ignore the warnings associated with these signals
-	-- Alternatively, you can create a different board implementation, 
-	--   or make additional adjustments to the constraints file
 	
 end top_basys3_arch;

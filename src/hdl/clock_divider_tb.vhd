@@ -54,9 +54,8 @@ end clock_divider_tb;
 architecture test_bench of clock_divider_tb is 	
   
     component clock_divider is
-        generic ( constant k_DIV : natural := 2	); -- How many clk cycles until slow clock toggles
-                                                   -- Effectively, you divide the clk double this 
-                                                   -- number (e.g., k_DIV := 2 --> clock divider of 4)
+        generic ( constant k_DIV : natural := 2	); 
+        
         port ( 	i_clk    : in std_logic;
                 i_reset  : in std_logic;		   -- asynchronous
                 o_clk    : out std_logic		   -- divided (slow) clock
